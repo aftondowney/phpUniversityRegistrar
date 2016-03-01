@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Courses</title>
+    </head>
+    <body>
+        <h1>Courses</h1>
+
+        {% if courses is not empty %}
+            <p>Here are all your courses:</p>
+            <ul>
+                {% for course in courses %}
+                    <li>
+                        <a href="/courses/{{ course.getId }}">{{ course.getName }} {{ course.getCourseNumber }}</a>
+                        <button><a href="/course/{id}/edit">Edit</a></button>
+                        <form action="/course/{id}/delete" method="post">
+                            <input name="_method" type="hidden" value="delete">
+                            <button type="submit">Delete </button>
+                        </form>
+                    </li>
+                {% endfor %}
+        {% endif %}
+
+
+                {% if form %}
+                    <form action='/course/{id}/edit' method='post'>
+                        <label for='name'>New Course Name</label>
+                        <input id='name' name='name' type='text'>
+
+                        <button type='submit'>Update course</button>
+                    </form>
+                    {% endif %}
+
+            </ul>
+
+
+
+        <p><a href='/'>Home</a></p>
+    </body>
+</html>
