@@ -96,6 +96,21 @@
         {
             $GLOBALS['DB']->exec("INSERT INTO students_courses (course_id, student_id) VALUES ({$course->getId()}, {$this->getId()});");
         }
+
+        function getCourse()
+        {
+            $courses = $GLOBALS['DB']->query("SELECT courses.* FROM students JOIN students_courses ON (students.id = students_courses.student_id) JOIN courses ON (students_courses.course_id = courses.id) WHERE students.id = {$this->getId()};");
+
+            $returned_courses = array();
+            foreach($courses as $course) {
+                $name = $course['name'];
+                $course_number = $course['course_number'];
+                $id = $course['id'];
+                $new_course = new Course($name, $course_number, $id);
+                array_push($returned_courses, $new_course);
+            }
+            return $returned_courses;
+        }
     }
 
 

@@ -166,7 +166,7 @@
             $this->assertEquals([], $test_course->getStudent());
         }
 
-        function testAddStudent()
+        function testAddCourse()
         {
             $name = "History";
             $course_number = 101;
@@ -181,40 +181,41 @@
             $test_student->save();
 
             //Act
-            $test_course->addStudent($test_student);
+            $test_student->addCourse($test_course);
 
             //Assert
-            $this->assertEquals([$test_student], $test_course->getStudent());
+            $this->assertEquals([$test_course], $test_student->getCourse());
         }
 
-        function testGetStudent()
+        function testGetCourse()
         {
-          //Arrange
-          $name = "History";
-          $course_number = 101;
-          $id = 1;
-          $test_course = new Course($name, $course_number, $id);
-          $test_course->save();
+            $name = "History";
+            $course_number = 101;
+            $id = 1;
+            $test_course = new Course($name, $course_number, $id);
+            $test_course->save();
 
-          $name = "Tubbs";
-          $date_enrolled = "2016-03-01";
-          $id = 3;
-          $test_student = new Student($name, $date_enrolled, $id);
-          $test_student->save();
+            $name2 = "Econ";
+            $course_number2 = 202;
+            $id2 = 1;
+            $test_course2 = new Course($name2, $course_number2, $id2);
+            $test_course2->save();
 
-          $name2 = "Willie";
-          $date_enrolled2 = "2016-06-23";
-          $id2 = 3;
-          $test_student2 = new Student($name, $date_enrolled2, $id2);
-          $test_student2->save();
+            $name = "Tubbs";
+            $date_enrolled = "2016-03-01";
+            $id = 3;
+            $test_student = new Student($name, $date_enrolled, $id);
+            $test_student->save();
 
-          //Act
-          $test_course->addStudent($test_student);
-          $test_course->addStudent($test_student2);
+            //Act
+            $test_student->addCourse($test_course);
+            $test_student->addCourse($test_course2);
 
-          //Assert
-          $this->assertEquals($test_course->getStudent(), [$test_student, $test_student2]);
+            //Assert
+            $this->assertEquals([$test_course, $test_course2], $test_student->getCourse());
+
         }
+
 
 }
 
