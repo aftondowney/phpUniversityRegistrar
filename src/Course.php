@@ -92,14 +92,24 @@
             return $found_course;
         }
 
-        function addStudent()
+        function addStudent($student)
         {
-            $GLOBALS['DB']->exec("INSERT INTO students_courses (course_id, student_id) VALUES ({$this->getId()}, {$student->getId()};)");
+            $GLOBALS['DB']->exec("INSERT INTO students_courses (course_id, student_id) VALUES ({$this->getId()}, {$student->getId()});");
         }
 
-        function getStudents()
+        function getStudent()
         {
-            $query = $GLOBALS['DB']->query("SELECT students.* FROM courses JOIN students_courses ON (courses.id = students_courses.course_id) JOIN students ON (students.id = students_courses.student_id) WHERE courses.id = {$this->getId()};")
+            $students = $GLOBALS['DB']->query("SELECT students.* FROM courses JOIN students_courses ON (courses.id = students_courses.course_id) JOIN students ON (students.id = students_courses.student_id) WHERE courses.id = {$this->getId()};");
+
+            $returned_students = [];
+            foreach($students as $student) {
+                $name = $student['name'];
+                $date_enrolled = $student['date_enrolled'];
+                $id = $student['id'];
+                $new_student = new Student($name, $date_enrolled, $id);
+                array_push($returned_students, $new_student);
+            }
+            return $returned_students;
         }
 
 

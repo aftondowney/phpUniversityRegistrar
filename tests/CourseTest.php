@@ -18,7 +18,7 @@
         protected function tearDown()
         {
             Course::deleteAll();
-            //Student::deleteAll();
+            Student::deleteAll();
         }
 
         function testSave()

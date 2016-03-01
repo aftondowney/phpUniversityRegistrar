@@ -184,7 +184,36 @@
             $test_course->addStudent($test_student);
 
             //Assert
-            $this->assertEquals([$test_task], $test_course->getStudents());
+            $this->assertEquals([$test_student], $test_course->getStudent());
+        }
+
+        function testGetStudent()
+        {
+          //Arrange
+          $name = "History";
+          $course_number = 101;
+          $id = 1;
+          $test_course = new Course($name, $course_number, $id);
+          $test_course->save();
+
+          $name = "Tubbs";
+          $date_enrolled = "2016-03-01";
+          $id = 3;
+          $test_student = new Student($name, $date_enrolled, $id);
+          $test_student->save();
+
+          $name2 = "Willie";
+          $date_enrolled2 = "2016-06-23";
+          $id2 = 3;
+          $test_student2 = new Student($name, $date_enrolled2, $id2);
+          $test_student2->save();
+
+          //Act
+          $test_course->addStudent($test_student);
+          $test_course->addStudent($test_student2);
+
+          //Assert
+          $this->assertEquals($test_course->getStudent(), [$test_student, $test_student2]);
         }
 
 }
