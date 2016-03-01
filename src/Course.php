@@ -12,9 +12,9 @@
             $this->id = $id;
         }
 
-        function setName($new_name)
+        function setName($name)
         {
-            $this->name = $new_name;
+            $this->name = $name;
         }
 
         function getName()
