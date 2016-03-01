@@ -166,6 +166,27 @@
             $this->assertEquals([], $test_course->getStudent());
         }
 
+        function testAddStudent()
+        {
+            $name = "History";
+            $course_number = 101;
+            $id = 1;
+            $test_course = new Course($name, $course_number, $id);
+            $test_course->save();
+
+            $name = "Tubbs";
+            $date_enrolled = "2016-03-01";
+            $id = 3;
+            $test_student = new Student($name, $date_enrolled, $id);
+            $test_student->save();
+
+            //Act
+            $test_course->addStudent($test_student);
+
+            //Assert
+            $this->assertEquals([$test_task], $test_course->getStudents());
+        }
+
 }
 
 
