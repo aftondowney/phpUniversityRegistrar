@@ -12,25 +12,17 @@
             <ul>
                 {% for course in courses %}
                     <li>
-                        <a href="/courses/{{ course.getId }}">{{ course.getName }} {{ course.getCourseNumber }}</a>
-                        <button><a href="/course/{id}/edit">Edit</a></button>
-                        <form action="/course/{id}/delete" method="post">
+                        <a href="/course/{{ course.getId }}">{{ course.getName }} {{ course.getCourseNumber }}</a>
+                        <form action='/course/{{ course.getId }}/edit' method='get'>
+                            <button type='submit'>Edit Course</button>
+                        </form>
+                        <form action="/course/{{ course.getId }}/delete" method="post">
                             <input name="_method" type="hidden" value="delete">
                             <button type="submit">Delete </button>
                         </form>
                     </li>
                 {% endfor %}
         {% endif %}
-
-
-                {% if form %}
-                    <form action='/course/{id}/edit' method='post'>
-                        <label for='name'>New Course Name</label>
-                        <input id='name' name='name' type='text'>
-
-                        <button type='submit'>Update course</button>
-                    </form>
-                    {% endif %}
 
             </ul>
 

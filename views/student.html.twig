@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>University Registrar</title>
+    </head>
+    <body>
+        <h1>{{ student.getName }}</h1>
+
+        {% if courses is not empty %}
+            <p>Here are the courses for this student:</p>
+            <ul>
+                {% for course in courses %}
+                    <li>
+                        {{ course.getName }}
+                        {{ course.getId }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <a href="/">Home</a>
+    </body>
+</html>

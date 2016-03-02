@@ -5,7 +5,7 @@
 <body>
     <h1>Welcome to the office of the Registrar</h1>
 
-    <h2>Add a Course</h2>
+    <p><h2>Add a Course</h2><a href="/courses">View All Courses</a></p><br>
 
     <form action='/courses' method='post'>
         <label for='name'>Course Name</label>
@@ -17,14 +17,14 @@
         <button type='submit'>Add Course</button>
     </form>
 
-    <h2>Add a Student</h2>
+    <p><h2>Add a Student</h2><a href="/students">View All Student</a></p><br>
 
     <form action='/students' method='post'>
         <label for='name'>Student Name</label>
         <input id='name' name='name' type='text'>
 
         <label for='date_enrolled'>Enrollment Date</label>
-        <input id='date_enrolled' name='date_enrolled' type='text'>
+        <input id='date_enrolled' name='date_enrolled' type='date'>
 
         <button type='submit'>Add Student</button>
     </form>

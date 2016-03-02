@@ -1,1 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Edit Course</title>
+    </head>
+    <body>
+        <form class="" action="/course/{{ course.getId }}" method="post">
+            <input name="_method" type="hidden" value="patch">
+            <label for="">Edit Course Name:</label>
+            <input type="text" name="name" value="">
 
+            <button type="submit" name="button">Update Course</button>
+        </form>
+    </body>
+</html>
